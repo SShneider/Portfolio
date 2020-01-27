@@ -12,6 +12,10 @@ const contactButton = document.getElementById("contact")
 const sendButton = document.getElementById("sendButton")
 const contactForm = document.getElementById("contactForm")
 const formFields = document.getElementsByClassName("formFields")
+const hiddenPanels = document.getElementsByClassName("panelHidden")
+const panels = document.getElementsByClassName("panel")
+const oldTownButton = document.getElementById("OTN")
+const projectMenuButton = document.getElementById("menutitle")
 let textCoverInterval;
 let textCoverTimeout;
 let contactFormTimeout;
@@ -26,9 +30,12 @@ aboutMeButton.addEventListener("mouseover", ()=>revealAboutMe(0))
 aboutMeButton.addEventListener("mouseleave", ()=>hideAboutMe(1))
 contactButton.addEventListener("mouseover", ()=>revealContactForm(event))
 contactButton.addEventListener("mouseleave", ()=>hideContactForm(event))
-
+projectMenuButton.addEventListener("mouseover", ()=>revealProject(event))
 splitDesc();
 //Main functions
+function revealProject(e){
+    primeThePanels();
+}
 function revealContactForm(e){
     hideAll(active)
     active="contact"
@@ -116,6 +123,23 @@ function hideAboutMe(hide){
 }
 
 //Helper functions
+//Helper functions for projects 
+function primeThePanels(e){
+    console.log(1)
+  
+    for(let i=0; i<panels.length; i++){
+        
+        panels[i].addEventListener("mouseover", function(){
+            panelHover(event, 0)})
+        // panels[i].addEventListener("mouseleave", function(){
+        //     panelHover(event, 1)})
+    }
+    
+}
+function panelHover(event, hide){
+    if(hide)event.target.classList.remove("hideThePanels")
+    else event.target.classList.add("hideThePanels")
+}
     //Helper function hideAll
 function hideAll(active){
     clearTOandINT()
