@@ -1,0 +1,549 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    overflow: hidden;
+  }
+.header{
+    line-height: 1;
+   
+    
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    }
+.leftNav{
+    text-align: center;
+}
+#logo{
+    font-family: 'Arvo', serif;
+    font-weight: 200;
+    font-size: 25px;
+    width: 200px;
+    margin-left: 30px;
+}
+.rotatingarrow{
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    -ms-transition: -ms-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;  
+    color: lightgray;
+    font-size: 10px;
+
+   
+}
+
+#submenu {
+    overflow-y: hidden;
+    /* top: 100px;
+    left: 120px;
+    position:absolute; */
+    width: 110px;
+    max-height: 0px;
+    background: white;
+    list-style: none;
+    line-height: 1.5; 
+    -webkit-transition: max-height 0.9s ease-in-out;
+    -moz-transition: max-height 0.9s ease-in-out;
+    -o-transition: max-height 0.9s ease-in-out;
+    transition: max-height 0.9s ease-in-out;
+}
+
+#menutitle:hover #submenu {
+    max-height: 70px;
+    -webkit-transition: max-height 1s ease-in-out;
+    -moz-transition: max-height 1s ease-in-out;
+    -o-transition: max-height 1s ease-in-out;
+    transition: max-height 1s ease-in-out;
+}
+#menutitle:hover .rotatingarrow {
+    max-width: 15px;
+    transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+}
+
+
+
+#menu{
+    width: 100px;
+    list-style: none;
+    font-family: 'Baskervville', cursive;
+    color: gray
+}
+#menu>li:hover{
+    cursor: pointer;
+    color: gray;
+    text-shadow: 0px 1px #888888;
+}
+#menu>li:hover > ul{
+    color: gray;
+    text-shadow: none;
+}
+#submenu>li:hover{
+    color: black;
+}
+
+ul#submenu>li{
+    font-family: 'Rajdhani';
+    font-size: 13px;
+    text-indent: -30px;
+}
+ul#submenu>li:before{
+    content: "-- ";
+    text-indent: -30px;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+  }
+.meBlur{
+    filter: blur(8px) contrast(100%) grayscale(100%) opacity(0%);
+    -webkit-filter: blur(8px) contrast(100%) grayscale(100%) opacity(0%);
+    -webkit-transition: filter 1s ease-in-out;
+    -ms-transition:  filter 1s ease-in-out;
+    transition:  filter 1s ease-in-out;
+}
+.meNoBlur{
+    filter: blur(0px) contrast(115%) grayscale(0%) opacity(100%);
+    -webkit-filter: blur(0px) contrast(115%) grayscale(0%) opacity(100%);
+    -webkit-transition: filter .5s ease-in-out;
+    -ms-transition:  filter .5s ease-in-out;
+    transition:  filter .5s ease-in-out;
+}
+#me{
+    width: 150px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+#aboutMe{
+    display: flex;
+    margin-left: 100px;
+    margin-top: 90px;
+    align-items: center;
+}
+.aboutMeOff{
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    
+}
+.invisibleLetter{
+    opacity: 0;
+} 
+.visibleLetters{
+    animation: letterOpacity 0.1s both;
+}
+#desc{
+    max-width: 800px;
+    margin-left: 30px;
+    margin-top: -5px;
+    font-size: 15px;
+    color: rgb(139, 139, 139);
+    font-family: "Inconsolata"
+}
+#links{
+    text-align: center;
+    max-width: 950px;
+    margin-left: 130px;
+    margin-top: 35px;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 19px;
+}
+#links>ul{
+    list-style: none;
+    line-height: 1.4;
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.visibilityOff{
+
+    max-height: 0;
+    max-width: 0;
+    overflow: hidden;
+}
+#resume{
+    height: 100%;
+    width: 100%;
+} 
+#contactForm{
+    margin-top: -10px;
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    
+    text-align: center;
+}
+button{
+    width: 90px;
+    border-radius: 5px;
+    opacity: 1;
+}
+button:hover{
+    background-color: black;
+    color: white;
+    border-color: black;
+    font-weight: bold;
+
+}
+/* .sendButtonReveal{
+    opacity: 1;
+    -webkit-transition: opacity 700ms ease-in-out;
+    -moz-transition: opacity 700ms ease-in-out;
+    -o-transition: opacity 700ms ease-in-out;
+    transition: opacity 700ms ease-in-out;
+    
+} */
+.slideInLeft{
+    opacity: 1;
+    animation: slideFromLeft 500ms linear;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -moz-transition: opacity 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+}
+.slideInRight{
+    opacity: 1;
+    animation: slideFromRight 500ms linear;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -moz-transition: opacity 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+}
+.hideForm{
+    animation: hideForm 0.4s both;
+}
+.hideFormButton{
+    animation: fadeToBottomLonger 0.5s both;
+}
+input{
+    margin-top: 2px;
+    width: 100%;
+  padding: 12px;
+  border: 2px solid black;
+
+  box-sizing: border-box;
+  resize: vertical;
+}
+textarea{
+    margin-top: 2px;
+    width: 100%;
+  padding: 12px;
+  border: 2px solid black;
+ 
+  box-sizing: border-box;
+  resize: vertical;
+}
+.reveal-text-reverse,
+.reveal-text-reverse::after {
+	animation-delay: var(--animation-delay, 2s);
+	animation-iteration-count: var(--iterations, 1);
+	animation-duration: var(--duration, 1200ms);
+	animation-fill-mode: both;
+	animation-timing-function: cubic-bezier(0.0, 0.3, 0.2, 1);
+}
+.reveal-text-reverse {
+	--animation-delay: var(--delay, 0);
+	--animation-duration: var(--duration, 500ms);
+	--animation-iterations: var(--iterations, 1);
+	position: relative;
+	color: black;
+	animation-name: clip-text;
+	
+	white-space: nowrap;
+
+}
+.reveal-text-reverse::after {
+    content: "";
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 44%;
+    right: 0;
+    bottom: 0;
+    width: 115px;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: 0 100 ;
+    animation-name: text-revealer-reverse;
+}
+@keyframes hideForm {
+
+    0%{
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    90%{
+        transform: scale(0.1, 0.6);
+    }
+	100% {
+        transform: scale(0, 0.5);
+        opacity: 0;
+	}
+}
+
+
+@keyframes clip-text {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+@keyframes text-revealer-reverse {
+    	
+
+	
+	60%, 100% {
+        transform-origin: 40% 45%;	
+	}
+    0%{
+     
+    }
+	
+	60% {
+       
+        transform: scaleY(0.8);
+	}
+	
+	100% {
+ 
+        transform: scaleY(0);
+	}
+}
+
+
+.techStackNone{
+    opacity: 0;
+}
+.techStackOff{
+    max-height: 500px;
+    max-width: 1200px;
+    
+    animation: fadeToBottom 0.5s both;
+}
+
+.techStackOn{
+    max-height: 500px;
+    max-width: 1200px;
+    animation: fadeFromTop 0.5s both;
+}
+.fadeToBottom{
+    animation: fadeToBottom 0.5s both;
+}
+@keyframes fadeToBottomLonger {
+    from {
+        opacity: 1;
+        
+    }
+    to {transform: translateY(200%); 
+        opacity: 0 }
+}
+@keyframes letterOpacity {
+    from {
+        opacity: 0;
+        
+    }
+    to {
+        opacity: 1; }
+}
+@keyframes fadeToBottom {
+    from {
+        opacity: 1;
+        
+    }
+    to {transform: translateY(100%); 
+        opacity: 0 }
+}
+@keyframes fadeFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to { opacity: 1;
+        transform: translateY(-22%);
+    }
+}
+@keyframes rotate{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+@keyframes slideFromRight{
+    0%{
+        transform: translateX(+30%)
+    }
+    80%{
+        transform: translateX(0%)
+    }
+    90%{
+        transform: translateX(+2%)
+    }
+    100%{
+        transform: translateX(0%)
+    }
+}
+@keyframes slideFromLeft{
+    0%{
+        transform: translateX(-30%)
+    }
+    80%{
+        transform: translateX(0%)
+    }
+    90%{
+        transform: translateX(-2%)
+    }
+    100%{
+        transform: translateX(0%)
+    }
+}
+@keyframes slideFromTop{
+    from{
+        transform: translateY(-100%)
+    }
+    to{
+        transform: translateY(0%)
+    }
+}
+
+#techStack{
+    align-content: space-evenly;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 55px 0px 0px 0px;
+}
+/* .techStackFolded{
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+} */
+.logo-slide{
+    animation: slideFromTop 500ms linear;
+}
+
+.logo-animation{
+    animation: rotate 500ms linear; 
+}
+.logo{
+    width: 74px;
+    
+}
+.reduxlogo{
+    height: 68px;
+}
+.logodiv{
+    max-height: 75px;
+    max-width: 80px;
+    align-items: center;
+    position: relative;
+}
+.techCategory{
+    max-height:200px;
+    width: 320px;
+    
+    margin: 6px;
+    margin-top: 18px;
+    
+
+}
+.logodiv:hover .tooltip{
+    opacity: 0.9;
+    top: 90%;
+    left: 0%;
+    min-width: 70px;
+    max-width: 82px;
+    font-size: 12px;
+    
+}
+.tooltip{
+    font-family: 'Space Mono';
+    font-size: 1px;
+    opacity: 0;
+    top: 75%;
+    left: 25%;
+    min-width: 35px;
+    max-width: 35px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    color: white;
+    background: black;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid white;
+    border-radius: 5px;
+    box-shadow:
+    0 0 0 1px hsl(0, 0%, 68%),
+    0 0 0 1px hsl(0, 0%, 61%);
+}
+
+
+.techTitle{
+    text-align: center;
+    max-height: 20px;
+    background-color:#333333;
+    color: white;
+    padding-bottom: 3px;
+}
+
+.techBody{
+    
+    padding: 5px;
+    border: 2px solid #333333;
+    min-height: 175px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width: 1400px){
+    #desc{
+        max-width: 600px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    #desc{
+        max-width: 400px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #desc{
+        max-width: 400px;
+        margin-left: 0px;
+    }
+    #aboutMe{
+        flex-direction: column;
+        align-items: center;
+        margin-left:0px;
+    }
+}
+@media only screen and (max-width: 768px) {
+   
+   
+}
+@media only screen and (min-width: 600px) {
+    
+}
+@media only screen and (max-width: 600px) {
+
+}
