@@ -16,6 +16,9 @@ const hiddenPanels = document.getElementsByClassName("panelHidden")
 const panels = document.getElementsByClassName("panel")
 const oldTownButton = document.getElementById("OTN")
 const projectMenuButton = document.getElementById("menutitle")
+const mosaic = document.getElementById("mosaic_wrapper")
+const behindMosaic = document.getElementById("behind-mosaic")
+let copyOfPanels = [].slice.call(panels)
 let textCoverInterval;
 let textCoverTimeout;
 let contactFormTimeout;
@@ -24,6 +27,8 @@ let newDescription;
 let hideTimeout;
 let letterInterval;
 let active = "";
+let mosaicReturnTimeOut;
+let mosaicReturnInterval;
 toolboxButton.addEventListener("mouseover", ()=> bringTechStack(event))
 toolboxButton.addEventListener("mouseleave", ()=> hideTechStack(event))
 aboutMeButton.addEventListener("mouseover", ()=>revealAboutMe(0))
@@ -31,11 +36,10 @@ aboutMeButton.addEventListener("mouseleave", ()=>hideAboutMe(1))
 contactButton.addEventListener("mouseover", ()=>revealContactForm(event))
 contactButton.addEventListener("mouseleave", ()=>hideContactForm(event))
 projectMenuButton.addEventListener("mouseover", ()=>revealProject(event))
+mosaic.addEventListener("mouseleave", ()=>bringBackBG(event))
 splitDesc();
 //Main functions
-function revealProject(e){
-    primeThePanels();
-}
+
 function revealContactForm(e){
     hideAll(active)
     active="contact"
@@ -124,24 +128,73 @@ function hideAboutMe(hide){
 
 //Helper functions
 //Helper functions for projects 
-function primeThePanels(e){
-    console.log(1)
-  
-    for(let i=0; i<panels.length; i++){
+function bringBackBG(e){
+    //hideAll(active, "noswitch")
+    let count = document.getElementsByClassName("hideThePanels")
+    if(count.length<9) return 0;
+    // for(let i = 0; i<panels.length; i++){
+    //     panels[i].classList.remove("hideThePanels")
+    //     panels[i].classList.add('invisibleLetter')
         
+    // }
+    let i = 0;
+    let intervalTiming = 1000*Math.random()
+    let idx=0;
+    mosaicReturnTimeOut = setTimeout(function(){
+        mosaicReturnInterval = setInterval(function(){
+            if(i<panels.length){
+                while(!panels[idx].classList.contains("hideThePanels")){
+                    idx = Math.floor(Math.random()*panels.length)
+                }
+            panels[idx].classList.remove('hideThePanels')
+            panels[idx].classList.add('restorePanels')
+            hiddenPanels[copyOfPanels.indexOf(panels[idx])].classList.add("invisibleLetter")
+            i++
+            intervalTiming = 500+600*Math.random()
+            }
+    }, intervalTiming)
+
+    }, 3000)
+}
+// textCoverInterval = setInterval(function(){
+//     if(i<textToCover.length){
+//         textToCover[i].classList.add('reveal-text-reverse')
+//         i++
+//     }
+// }, 500)
+
+function revealProject(e){
+    hideAll(active)
+    active="projects"
+    mosaic.classList.remove("visibilityOff")
+    primeThePanels();
+}
+function primeThePanels(e){
+    for(let i=0; i<panels.length; i++){
         panels[i].addEventListener("mouseover", function(){
             panelHover(event, 0)})
-        // panels[i].addEventListener("mouseleave", function(){
-        //     panelHover(event, 1)})
+
     }
-    
 }
 function panelHover(event, hide){
-    if(hide)event.target.classList.remove("hideThePanels")
-    else event.target.classList.add("hideThePanels")
+    let count = document.getElementsByClassName("hideThePanels")
+
+    if(count.length===9) return 0;
+    hideAll(active, "projects")
+    
+    behindMosaic.classList.remove("invisibleLetter")
+    if(hide){
+        event.target.classList.remove("hideThePanels")
+        hiddenPanels[copyOfPanels.indexOf(event.target)].classList.add("invisibleLetter")
+    }
+    else{
+        event.target.classList.add("hideThePanels")
+        hiddenPanels[copyOfPanels.indexOf(event.target)].classList.remove("invisibleLetter")
+    }
 }
     //Helper function hideAll
-function hideAll(active){
+// eslint-disable-next-line complexity
+function hideAll(active, source){
     clearTOandINT()
     switch(active){
         case "aboutMe":
@@ -162,6 +215,19 @@ function hideAll(active){
         case "contact":
             hideContactForm();
             break;
+        case "projects":
+            if(source!=="projects"){
+                mosaic.classList.add("visibilityOff")
+            }
+            for(let i = 0; i<panels.length; i++){
+                panels[i].classList.remove("restorePanels")
+                if(source!=="projects"){
+                    panels[i].classList.remove("hideThePanels")
+                    hiddenPanels[i].classList.add("invisibleLetter")
+                }
+             }
+             
+            break;
         default:
             return 0
     }
@@ -175,6 +241,8 @@ function clearTOandINT(){
     clearTimeout(textCoverTimeout)
     clearInterval(textCoverInterval)
     clearTimeout(contactFormTimeout)
+    clearTimeout(mosaicReturnTimeOut)
+    clearInterval(mosaicReturnInterval)
 }
 function revealAboutMeMenu(){
     let i = 0
