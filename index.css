@@ -189,6 +189,7 @@ a{
     width: 100%;
 } 
 #contactForm{
+    position: relative;
     margin-top: -10px;
     margin-left: 150px;
     display: flex;
@@ -214,8 +215,15 @@ button:hover{
     z-index: 0;
     margin-top: -10px;
     margin-left:120px;
-    
+    font-family: "ZCOOL QingKe HuangYou";
+    font-size: 15px;
+   /* font-weight: 600; */
     width: 990px;
+}
+#behind-mosaic ul{
+    padding-left: 0px;
+    list-style: none;
+    text-align: center;
 }
 #mosaic_wrapper {
 /*    
@@ -324,7 +332,7 @@ box-shadow: inset 6px 6px 13px 0px rgba(0,0,0,1);
     -ms-filter: grayscale(100%); 
     -o-filter: grayscale(100%); */
     
-    background: url("Assets/oldtown2.png") no-repeat 350px 110px fixed;
+    background: url("Assets/oldtown.png") no-repeat 350px 110px fixed; /* 350 110 */
 }
 #mosaic_wrapper .panel::after{
     background-color: white;
@@ -340,6 +348,7 @@ box-shadow: inset 6px 6px 13px 0px rgba(0,0,0,1);
     
 } */
 .slideInLeft{
+  
     opacity: 1;
     animation: slideFromLeft 500ms linear;
     -webkit-transition: opacity 300ms ease-in-out;
@@ -522,7 +531,7 @@ textarea{
 }
 @keyframes slideFromRight{
     0%{
-        transform: translateX(+30%)
+        transform: translateX(+20%)
     }
     80%{
         transform: translateX(0%)
@@ -536,7 +545,7 @@ textarea{
 }
 @keyframes slideFromLeft{
     0%{
-        transform: translateX(-30%)
+        transform: translateX(-20%)
     }
     80%{
         transform: translateX(0%)
@@ -582,9 +591,7 @@ textarea{
     width: 74px;
     
 }
-#behind-mosaic li{
-    list-style: none;
-}
+
 .reduxlogo{
     height: 68px;
 }

@@ -15,9 +15,13 @@ const formFields = document.getElementsByClassName("formFields")
 const hiddenPanels = document.getElementsByClassName("panelHidden")
 const panels = document.getElementsByClassName("panel")
 const oldTownButton = document.getElementById("OTN")
+const allSignButton = document.getElementById("AS")
+const WCTButton = document.getElementById("WCT")
 const projectMenuButton = document.getElementById("menutitle")
 const mosaic = document.getElementById("mosaic_wrapper")
 const behindMosaic = document.getElementById("behind-mosaic")
+const projectLogos = document.querySelectorAll(".panelHidden img")
+const projectDesc = document.querySelectorAll(".panelHidden ul")
 let copyOfPanels = [].slice.call(panels)
 let textCoverInterval;
 let textCoverTimeout;
@@ -29,6 +33,24 @@ let letterInterval;
 let active = "";
 let mosaicReturnTimeOut;
 let mosaicReturnInterval;
+const oldTownLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/postgreslogo.png", "Assets/LOGOS/expresslogo.png", "Assets/LOGOS/oauth.png", "Assets/LOGOS/mocha.png", "Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
+const allSignLogos = ["Assets/LOGOS/tensorflow.png", "Assets/LOGOS/flask.png", "Assets/LOGOS/expresslogo.png", 
+"Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/semantic.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/postgreslogo.png", 
+"Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
+const WCTLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png",  "Assets/LOGOS/leaflet.png", "Assets/LOGOS/weathergov.png", "Assets/LOGOS/strava_logo_orange.png", 
+"Assets/LOGOS/react-leaflet.jpg",  "Assets/LOGOS/bootstrap.png", 
+"Assets/LOGOS/passportjs.png"]
+const oldTownDesc = ["<li>JavaScript</li> <li>Ecommerce Website</li>", "<li>React based SPA</li>", 
+"<li>State Management</li><li>using Redux</li>", "<li>PSQL Database</li> <li>Persistent Storage</li>", "<li> &nbsp; </li> <li>Express</li> <li>Server Framework</li>",
+ "<li>OAuth</li><li>Authorization</li>", "<li>Mocha</li><li>Tested</li>", "<li>Webpack</li><li>Bundled</li>", "<li>Heroku</li><li>Deployed</li>" ]
+const allSignDesc =["<li>Tensorflow</li> <li>Machine Learning Model</li>", "<li>Flask Server</li><li>Tensorflow Deployment</li>",
+ "<li> &nbsp; </li> <li>Express</li> <li>Server Framework</li>", "<li>Redux </li><li>State Management</li>",
+  "<li> Semantic Library</li><li>Styling</li>","<li>React based SPA</li>"
+, "<li>PSQL Database</li> <li>Persistent Storage</li>", "<li>Webpack</li><li>Bundled</li>", "<li>Heroku</li><li>Deployed</li>" ]
+const WCTDesc =["<li>JavaScript</li><li>Coordinates Dependant</li><li> Weather Forecast</li>",   "<li>React based SPA</li>", "<li>Redux </li><li>State Management</li>"
+, "<li>Leaflet</li> <li>Map API</li>", "<li>Weather.gov</li><li>Weather API</li>",
+ " <li>Strava Fitness</li> <li>GPS API</li>","<li> React Leaflet</li><li>React Components for Leaflet</li>",
+  "<li>Styled In</li> <li>Bootstrap</li>", "<li>PassportJS</li><li>Authorization</li>" ]
 toolboxButton.addEventListener("mouseover", ()=> bringTechStack(event))
 toolboxButton.addEventListener("mouseleave", ()=> hideTechStack(event))
 aboutMeButton.addEventListener("mouseover", ()=>revealAboutMe(0))
@@ -36,6 +58,9 @@ aboutMeButton.addEventListener("mouseleave", ()=>hideAboutMe(1))
 contactButton.addEventListener("mouseover", ()=>revealContactForm(event))
 contactButton.addEventListener("mouseleave", ()=>hideContactForm(event))
 projectMenuButton.addEventListener("mouseover", ()=>revealProject(event))
+oldTownButton.addEventListener("mouseover", ()=>revealProject(event))
+allSignButton.addEventListener("mouseover", ()=>revealProject(event))
+WCTButton.addEventListener("mouseover", ()=>revealProject(event))
 mosaic.addEventListener("mouseleave", ()=>bringBackBG(event))
 splitDesc();
 //Main functions
@@ -167,13 +192,37 @@ function revealProject(e){
     hideAll(active)
     active="projects"
     mosaic.classList.remove("visibilityOff")
-    primeThePanels();
+    primeThePanels(e);
 }
 function primeThePanels(e){
+    let backgroundVar = "wct.jpg"
+    let logoArray = WCTLogos
+    let descArray = WCTDesc
+    switch(e.target.id){
+        case "AS":
+            backgroundVar = "allsign.jpg";
+            logoArray = allSignLogos;
+            descArray=allSignDesc;
+            break;
+        case "OTN":
+            backgroundVar = "oldtown.png";
+            logoArray = oldTownLogos;
+            descArray = oldTownDesc;
+            break;
+        case "WCT":
+            backgroundVar = "wct.jpg";
+            logosArray = WCTLogos;
+            break;
+        default:
+            backgroundVar = "wct.jpg";
+            logosArray = WCTLogos;
+    }
     for(let i=0; i<panels.length; i++){
+        projectLogos[i].src=logoArray[i];
+        projectDesc[i].innerHTML=descArray[i];
         panels[i].addEventListener("mouseover", function(){
-            panelHover(event, 0)})
-
+            panelHover(event, 0)});
+        panels[i].style.background=`url("Assets/${backgroundVar}") no-repeat 350px 110px fixed`
     }
 }
 function panelHover(event, hide){
