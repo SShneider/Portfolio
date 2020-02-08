@@ -22,50 +22,51 @@ const mosaic = document.getElementById("mosaic_wrapper")
 const behindMosaic = document.getElementById("behind-mosaic")
 const projectLogos = document.querySelectorAll(".panelHidden img")
 const projectDesc = document.querySelectorAll(".panelHidden ul")
+const theWholeMenu = document.getElementById("menu")
 let copyOfPanels = [].slice.call(panels)
 let textCoverInterval;
 let textCoverTimeout;
 let contactFormTimeout;
+let projectsTimeout;
 let description;
 let newDescription;
 let hideTimeout;
 let letterInterval;
-let active = "";
+let active = "aboutme";
 let mosaicReturnTimeOut;
 let mosaicReturnInterval;
-const oldTownLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/postgreslogo.png", "Assets/LOGOS/expresslogo.png", "Assets/LOGOS/oauth.png", "Assets/LOGOS/mocha.png", "Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
-const allSignLogos = ["Assets/LOGOS/tensorflow.png", "Assets/LOGOS/flask.png", "Assets/LOGOS/expresslogo.png", 
-"Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/semantic.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/postgreslogo.png", 
-"Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
-const WCTLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png",  "Assets/LOGOS/leaflet.png", "Assets/LOGOS/weathergov.png", "Assets/LOGOS/strava_logo_orange.png", 
-"Assets/LOGOS/react-leaflet.jpg",  "Assets/LOGOS/bootstrap.png", 
-"Assets/LOGOS/passportjs.png"]
-const oldTownDesc = ["<li>JavaScript</li> <li>Ecommerce Website</li>", "<li>React based SPA</li>", 
-"<li>State Management</li><li>using Redux</li>", "<li>PSQL Database</li> <li>Persistent Storage</li>", "<li> &nbsp; </li> <li>Express</li> <li>Server Framework</li>",
- "<li>OAuth</li><li>Authorization</li>", "<li>Mocha</li><li>Tested</li>", "<li>Webpack</li><li>Bundled</li>", "<li>Heroku</li><li>Deployed</li>" ]
-const allSignDesc =["<li>Tensorflow</li> <li>Machine Learning Model</li>", "<li>Flask Server</li><li>Tensorflow Deployment</li>",
- "<li> &nbsp; </li> <li>Express</li> <li>Server Framework</li>", "<li>Redux </li><li>State Management</li>",
-  "<li> Semantic Library</li><li>Styling</li>","<li>React based SPA</li>"
-, "<li>PSQL Database</li> <li>Persistent Storage</li>", "<li>Webpack</li><li>Bundled</li>", "<li>Heroku</li><li>Deployed</li>" ]
-const WCTDesc =["<li>JavaScript</li><li>Coordinates Dependant</li><li> Weather Forecast</li>",   "<li>React based SPA</li>", "<li>Redux </li><li>State Management</li>"
-, "<li>Leaflet</li> <li>Map API</li>", "<li>Weather.gov</li><li>Weather API</li>",
- " <li>Strava Fitness</li> <li>GPS API</li>","<li> React Leaflet</li><li>React Components for Leaflet</li>",
-  "<li>Styled In</li> <li>Bootstrap</li>", "<li>PassportJS</li><li>Authorization</li>" ]
-toolboxButton.addEventListener("mouseover", ()=> bringTechStack(event))
-toolboxButton.addEventListener("mouseleave", ()=> hideTechStack(event))
-aboutMeButton.addEventListener("mouseover", ()=>revealAboutMe(0))
-aboutMeButton.addEventListener("mouseleave", ()=>hideAboutMe(1))
-contactButton.addEventListener("mouseover", ()=>revealContactForm(event))
-contactButton.addEventListener("mouseleave", ()=>hideContactForm(event))
-projectMenuButton.addEventListener("mouseover", ()=>revealProject(event))
-oldTownButton.addEventListener("mouseover", ()=>revealProject(event))
-allSignButton.addEventListener("mouseover", ()=>revealProject(event))
-WCTButton.addEventListener("mouseover", ()=>revealProject(event))
+let backgroundVar;
+let logoArray;
+let descArray;
+let clickOccured = false;
+addAllEventListeners();
 mosaic.addEventListener("mouseleave", ()=>bringBackBG(event))
+theWholeMenu.addEventListener("click", ()=> clickedOnNavigation())
+function addAllEventListeners(){
+  ["mouseover", "click"].forEach(function(evntType){
+      
+    toolboxButton.addEventListener(evntType, ()=>bringTechStack(event))
+    aboutMeButton.addEventListener(evntType, ()=>revealAboutMe(0, 0, event))
+    contactButton.addEventListener(evntType, ()=>revealContactForm(event))
+    projectMenuButton.addEventListener(evntType, ()=>revealProject(event))
+    oldTownButton.addEventListener(evntType, ()=>revealProject(event))
+    allSignButton.addEventListener(evntType, ()=>revealProject(event))
+    WCTButton.addEventListener(evntType, ()=>revealProject(event))
+  })
+    contactButton.addEventListener("mouseleave", ()=>hideContactForm(event))
+    aboutMeButton.addEventListener("mouseleave", ()=>hideAboutMe(1, event))
+    toolboxButton.addEventListener("mouseleave", ()=> hideTechStack(event))
+    
+}
+
+function clickedOnNavigation(){
+    clickOccured = true;
+}
 splitDesc();
 //Main functions
 
 function revealContactForm(e){
+    if(clickOccured && e.type === "mouseover") return 0;
     hideAll(active)
     active="contact"
     contactForm.classList.remove("visibilityOff")
@@ -78,7 +79,9 @@ function revealContactForm(e){
 }
 // eslint-disable-next-line complexity
 function hideContactForm(event){
-    if(event && event.pageX>110) return 0;
+    
+    if(clickOccured && event.type === "mouseleave") return 0;
+    if(event && event.pageX>110 && event.pageY<178) return 0;
     
     //contactForm.classList.add("slideInLeft")
     // contactForm.classList.add("techStackOff")
@@ -88,16 +91,19 @@ function hideContactForm(event){
         if(i%2===0) formFields[i].classList.remove("slideInLeft")
         else formFields[i].classList.remove("slideInRight")
     }
-    if(event && event.pageY>178){
+    
+    if(event && event.pageY>178 || event && event.pageX<40){
     contactFormTimeout = setTimeout(function(){
         contactForm.classList.add("visibilityOff")
-    }, 1000)
+    }, 500)
     }
     else{
         contactForm.classList.add("visibilityOff")
     }   
 }
-function revealAboutMe(hide, isOnLoad){
+function revealAboutMe(hide, isOnLoad, event){
+    if(clickOccured && event.type === "mouseover") return 0;
+    if(active === "aboutMeComplete" && event.type === "click") return 0;
     if(!isOnLoad) hideAll(active);
     clearTOandINT()
     active = "aboutMe"
@@ -110,10 +116,13 @@ function revealAboutMe(hide, isOnLoad){
     magicLetters(hide)
     textCoverTimeout = setTimeout(function(){
         revealAboutMeMenu();
+        active="aboutMeComplete"
     }, 600);
+    
 }
 
-function bringTechStack() {
+function bringTechStack(event) {
+    if(clickOccured && event.type === "mouseover") return 0;
     hideAll(active)
     active = "techStack"
     techStack.classList.remove("techStackOff")
@@ -125,12 +134,15 @@ function bringTechStack() {
 }
 
 function hideTechStack(event){
+    if(clickOccured && event.type === "mouseleave") return 0;
     clearTOandINT()
     if(event.pageX>110) return 0;
-    hideTechPanels()
+    hideTechPanels(event)
 }
 
-function hideAboutMe(hide){
+function hideAboutMe(hide, event){
+    
+    if(clickOccured && event.type === "mouseleave") return 0;
     if(event.pageX>110) return 0;
     else clearTOandINT()
     magicLetters(hide)
@@ -154,14 +166,9 @@ function hideAboutMe(hide){
 //Helper functions
 //Helper functions for projects 
 function bringBackBG(e){
-    //hideAll(active, "noswitch")
+
     let count = document.getElementsByClassName("hideThePanels")
     if(count.length<9) return 0;
-    // for(let i = 0; i<panels.length; i++){
-    //     panels[i].classList.remove("hideThePanels")
-    //     panels[i].classList.add('invisibleLetter')
-        
-    // }
     let i = 0;
     let intervalTiming = 1000*Math.random()
     let idx=0;
@@ -181,23 +188,21 @@ function bringBackBG(e){
 
     }, 3000)
 }
-// textCoverInterval = setInterval(function(){
-//     if(i<textToCover.length){
-//         textToCover[i].classList.add('reveal-text-reverse')
-//         i++
-//     }
-// }, 500)
+
 
 function revealProject(e){
+    if(clickOccured && e.type === "mouseover") return 0;
+    let delay = 0;
+    if(active==="contact" || active==="techStack") delay = 520;
     hideAll(active)
-    active="projects"
-    mosaic.classList.remove("visibilityOff")
+    projectsTimeout = setTimeout(function(){ 
+        mosaic.classList.remove("visibilityOff")
+        active="projects"
     primeThePanels(e);
+}, delay)
 }
 function primeThePanels(e){
-    let backgroundVar = "wct.jpg"
-    let logoArray = WCTLogos
-    let descArray = WCTDesc
+    if(e.target.id==="WCT" && backgroundVar ==="wct.jpg") return 0;
     switch(e.target.id){
         case "AS":
             backgroundVar = "allsign.jpg";
@@ -211,18 +216,22 @@ function primeThePanels(e){
             break;
         case "WCT":
             backgroundVar = "wct.jpg";
-            logosArray = WCTLogos;
+            logoArray = WCTLogos;
+            descArray = WCTDesc;
             break;
         default:
-            backgroundVar = "wct.jpg";
-            logosArray = WCTLogos;
+            break;
+            
     }
     for(let i=0; i<panels.length; i++){
-        projectLogos[i].src=logoArray[i];
-        projectDesc[i].innerHTML=descArray[i];
+        if(e.target.id!=="menutitle"){
+            projectLogos[i].src=logoArray[i];
+            projectDesc[i].innerHTML=descArray[i];
+            panels[i].style.background=`url("Assets/${backgroundVar}") no-repeat 350px 110px fixed`
+        }
         panels[i].addEventListener("mouseover", function(){
             panelHover(event, 0)});
-        panels[i].style.background=`url("Assets/${backgroundVar}") no-repeat 350px 110px fixed`
+       
     }
 }
 function panelHover(event, hide){
@@ -244,7 +253,9 @@ function panelHover(event, hide){
     //Helper function hideAll
 // eslint-disable-next-line complexity
 function hideAll(active, source){
+    
     clearTOandINT()
+    if(active === "aboutMeComplete") active = "aboutMe"
     switch(active){
         case "aboutMe":
             for(let i = 0; i<newDescription.length; i++){
@@ -259,10 +270,10 @@ function hideAll(active, source){
             linksAboutMe.classList.add("visibilityOff")
             break
         case "techStack":
-            hideTechPanels();
+            hideTechPanels(event);
             break
         case "contact":
-            hideContactForm();
+            hideContactForm(event);
             break;
         case "projects":
             if(source!=="projects"){
@@ -292,8 +303,10 @@ function clearTOandINT(){
     clearTimeout(contactFormTimeout)
     clearTimeout(mosaicReturnTimeOut)
     clearInterval(mosaicReturnInterval)
+    clearTimeout(projectsTimeout)
 }
 function revealAboutMeMenu(){
+    
     let i = 0
     textCoverInterval = setInterval(function(){
         if(i<textToCover.length){
@@ -303,6 +316,7 @@ function revealAboutMeMenu(){
     }, 500)
 }
 function magicLetters(hide){
+   
     let randomBreakPoints = [0];
     let i = 5
     while(i>0){
@@ -325,6 +339,7 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 function letterReveal(letterIn, hide){
+    
     let remove = "invisibleLetter"
     let add = "visibleLetters"
     if(hide){
@@ -336,7 +351,8 @@ function letterReveal(letterIn, hide){
 }
 
     //Helper functions hide tech stack
-function hideTechPanels(){
+function hideTechPanels(event){
+    if(clickOccured && event.type === "mouseleave") return 0;
     for(let i = 0; i<theLogos.length; i++){
         theLogos[i].classList.remove("logo-animation")
         logoDivs[i].classList.remove("logo-slide")
@@ -352,3 +368,27 @@ function splitDesc(){
     desc.innerHTML = description
     newDescription = document.getElementsByClassName("singleLetter")
 }
+
+const oldTownLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/postgreslogo.png", "Assets/LOGOS/expresslogo.png", "Assets/LOGOS/oauth.png", "Assets/LOGOS/mocha.png", "Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
+const allSignLogos = ["Assets/LOGOS/tensorflow.png", "Assets/LOGOS/flask.png", "Assets/LOGOS/expresslogo.png", 
+"Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/semantic.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/postgreslogo.png", 
+"Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
+const WCTLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png",
+ "Assets/LOGOS/reduxlogo2.png",  "Assets/LOGOS/leaflet.png", 
+ "Assets/LOGOS/weathergov.png", "Assets/LOGOS/strava_logo_orange.png", 
+"Assets/LOGOS/react-leaflet.jpg",  "Assets/LOGOS/bootstrap.png", 
+"Assets/LOGOS/passportjs.png"]
+const oldTownDesc = ["<li>JavaScript</li> <li>Ecommerce Website</li>", "<li>React based SPA</li>", 
+"<li>State Management</li><li>using Redux</li>", "<li>PSQL Database</li> <li>Persistent Storage</li>", "<li> &nbsp; </li> <li>Express</li> <li>Server Framework</li>",
+ "<li>OAuth</li><li>Authorization</li>", "<li>Mocha</li><li>Tested</li>", "<li>Webpack</li><li>Bundled</li>", "<li>Heroku</li><li>Deployed</li>" ]
+const allSignDesc =["<li>Tensorflow</li> <li>Machine Learning Model</li>", "<li>Flask Server</li><li>Tensorflow Deployment</li>",
+ "<li> &nbsp; </li> <li>Express</li> <li>Server Framework</li>", "<li>Redux </li><li>State Management</li>",
+  "<li> Semantic Library</li><li>Styling</li>","<li>React based SPA</li>"
+, "<li>PSQL Database</li> <li>Persistent Storage</li>", "<li>Webpack</li><li>Bundled</li>", "<li>Heroku</li><li>Deployed</li>" ]
+const WCTDesc =["<li>JavaScript</li><li> Weather Forecast App</li>",  
+"<li>React based SPA</li>", "<li>Redux </li><li>State Management</li>", 
+"<li>Leaflet</li> <li>Map API</li>", "<li>Weather.gov</li><li>Weather API</li>",
+" <li>Strava Fitness</li> <li>GPS API</li>",
+"<li> React Leaflet</li><li>React Components for Leaflet</li>",
+"<li>Styled In</li> <li>Bootstrap</li>", 
+"<li>PassportJS</li><li>Authorization</li>" ]
