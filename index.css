@@ -735,6 +735,9 @@ textarea{
    #left{
        max-width: 150px;
    }
+   body {
+    overflow: hidden;
+    }
    
 }
 @media only screen and (min-width: 600px) {
@@ -743,6 +746,7 @@ textarea{
 @media only screen and (max-width: 600px) {
     body{
         flex-direction: column;
+        overflow: hidden;
     }
     .header{
         flex-direction: column;
@@ -795,5 +799,10 @@ textarea{
     }
     #techStack{
         margin-top: 500px;
+    }
+}
+@media screen and (max-width: 375px) {
+    body {
+        overflow: hidden;
     }
 }
