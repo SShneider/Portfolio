@@ -12,6 +12,11 @@ body {
     width: 100%;
     overflow: hidden;
   }
+  #wrapperDiv{
+      position: relative;
+    overflow: hidden;
+  }
+
   input{
 
     font-family: "Source Code Pro";
@@ -723,10 +728,10 @@ textarea{
   
 }
 @media only screen and (max-width: 842px) {
-    /* #right{
-        margin-top: 50px;
-        overflow-y: visible;
-    } */
+
+    #wrapperDiv{
+        overflow-y: scroll;
+    }
     #techStack{
         margin-top: 425px;
     }
@@ -735,9 +740,7 @@ textarea{
    #left{
        max-width: 150px;
    }
-   body {
-    overflow: hidden;
-    }
+  
    
 }
 @media only screen and (min-width: 600px) {
@@ -746,7 +749,7 @@ textarea{
 @media only screen and (max-width: 600px) {
     body{
         flex-direction: column;
-        overflow: hidden;
+
     }
     .header{
         flex-direction: column;
@@ -755,15 +758,12 @@ textarea{
         margin-bottom: 5px;
         text-decoration: underline;
     }
-    /* .header p{
-        max-width: 245px;
-        border-bottom: 1px solid black;
-    } */
     #logo{
         width: 400px;
         margin-left: 10px;
     }
     #menu{
+        position: relative;
         text-align: left;
         width: 600px;
         padding-left: 0px;
@@ -774,12 +774,12 @@ textarea{
     }
     #menu li{
         display: inline;
-        margin-left: 15px;
+        margin-left: 13px;
        
     }
     #submenu{
         text-align: right;
-        width: 400px;
+        width: 300px;
     }
     #submenu li{
         display: inline;
@@ -792,17 +792,22 @@ textarea{
         margin-left: 0px;
     }
     #aboutMe{
-        margin-top: 70px;
+        margin-top: 28px;
+    }
+    #links{
+        margin-top: 0px;
     }
     #links ul{
-        max-width: 400px;
+        margin-left: -12px;
+        max-width: 350px;
     }
     #techStack{
-        margin-top: 500px;
+        margin: auto;
+        margin-top: 510px;
     }
 }
-@media screen and (max-width: 375px) {
+/* @media screen and (max-width: 375px) {
     body {
         overflow: hidden;
     }
-}
+} */
