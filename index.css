@@ -80,9 +80,13 @@ textarea{
     -webkit-transform:rotate(90deg);
 }
 
-
+#WCT{
+    font-weight: bold;
+}
 
 #menu{
+    z-index: 1;
+    position: fixed;
     width: 80px;
     list-style: none;
     font-family: 'Baskervville', cursive;
@@ -113,6 +117,7 @@ ul#submenu>li:before{
 }
 
 .left{
+    
     display: flex;
     flex-direction: column;
   }
@@ -154,6 +159,7 @@ ul#submenu>li:before{
     animation: letterOpacity 0.1s both;
 }
 #desc{
+    margin-right: 15px;
     max-width: 800px;
     margin-left: 30px;
     margin-top: -5px;
@@ -190,8 +196,7 @@ a{
     width: 100%;
 } 
 #contactForm{
-    z-index: -1;
-    position: relative;
+   
     margin-top: -10px;
     margin-left: 50px;
     display: flex;
@@ -665,33 +670,61 @@ textarea{
 }
 @media only screen and (max-width: 1400px){
     #desc{
-        max-width: 600px;
+        max-width: 800px;
+    }
+    #links{
+        margin-left: 0px;
+    }
+    #links ul{
+        padding-left: 0px;
+        max-width: 900px;
+    }
+    #links ul li{
+        display: inline;
+        margin-left: 30px;
+    }
+    #aboutMe{
+        margin-left: 0px;
     }
 }
 @media only screen and (max-width: 1200px) {
     #desc{
-        max-width: 400px;
+        max-width: 600px;
+    }
+    #links ul{
+        max-width: 600px;
     }
 }
 
 @media only screen and (max-width: 992px) {
     #desc{
-        max-width: 400px;
         margin-left: 0px;
+    }
+    #me{
+        margin-left: -40px;
     }
     #aboutMe{
         flex-direction: column;
         align-items: center;
         margin-left:0px;
+        max-width: 550px;
     }
+    #links ul{
+        max-width: 500px;
+    }
+  
 }
 @media only screen and (max-width: 768px) {
-   
+   #left{
+       max-width: 150px;
+   }
    
 }
 @media only screen and (min-width: 600px) {
-    
+   
 }
 @media only screen and (max-width: 600px) {
-
+    body{
+        flex-direction: column;
+    }
 }

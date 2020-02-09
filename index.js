@@ -1,28 +1,35 @@
-const toolboxButton = document.getElementById('toolbox')
+const theWholeMenu = document.getElementById("menu")
+//VAboutMe
 const aboutMeButton = document.getElementById('aboutMeBtn')
-const techStack = document.getElementById("techStack")
 const aboutMe = document.getElementById("aboutMe")
-const theLogos = document.getElementsByClassName("logo")
-const logoDivs = document.getElementsByClassName("logodiv")
 const desc = document.getElementById("desc")
 const myImage = document.getElementById("me")
 const textToCover = document.getElementsByClassName("textCover")
 const linksAboutMe = document.getElementById("links")
+//VToolbox
+const toolboxButton = document.getElementById('toolbox')
+const techStack = document.getElementById("techStack")
+const theLogos = document.getElementsByClassName("logo")
+const logoDivs = document.getElementsByClassName("logodiv")
+//VContact
 const contactButton = document.getElementById("contact")
 const sendButton = document.getElementById("sendButton")
 const contactForm = document.getElementById("contactForm")
 const formFields = document.getElementsByClassName("formFields")
-const hiddenPanels = document.getElementsByClassName("panelHidden")
-const panels = document.getElementsByClassName("panel")
+//VProjects
+const rotatingArrow = document.getElementsByClassName("rotatingarrow")[3]
+const projectMenuButton = document.getElementById("menutitle")
 const oldTownButton = document.getElementById("OTN")
 const allSignButton = document.getElementById("AS")
 const WCTButton = document.getElementById("WCT")
-const projectMenuButton = document.getElementById("menutitle")
+const hiddenPanels = document.getElementsByClassName("panelHidden")
+const panels = document.getElementsByClassName("panel")
 const mosaic = document.getElementById("mosaic_wrapper")
 const behindMosaic = document.getElementById("behind-mosaic")
 const projectLogos = document.querySelectorAll(".panelHidden img")
 const projectDesc = document.querySelectorAll(".panelHidden ul")
-const theWholeMenu = document.getElementById("menu")
+const projectSubMenu = document.getElementById("submenu")
+//VGlobalVars
 let copyOfPanels = [].slice.call(panels)
 let textCoverInterval;
 let textCoverTimeout;
@@ -38,9 +45,17 @@ let mosaicReturnInterval;
 let backgroundVar;
 let logoArray;
 let descArray;
-let clickOccured = false;
+let clickOccurred = false;
+//FRuntimeFunc
+splitDesc();
 addAllEventListeners();
-mosaic.addEventListener("mouseleave", ()=>bringBackBG(event))
+function splitDesc(){
+    description = "<p><span class='singleLetter invisibleLetter'>"+desc.innerText.split("").join("</span><span class='singleLetter invisibleLetter'>").replace("\n", "</p><p>")+"</span></p>"
+    desc.innerHTML = description
+    newDescription = document.getElementsByClassName("singleLetter")
+}
+//FEventListeners
+mosaic.addEventListener("mouseleave", ()=>bringBackBG())
 theWholeMenu.addEventListener("click", ()=> clickedOnNavigation())
 function addAllEventListeners(){
   ["mouseover", "click"].forEach(function(evntType){
@@ -58,15 +73,72 @@ function addAllEventListeners(){
     toolboxButton.addEventListener("mouseleave", ()=> hideTechStack(event))
     
 }
-
+//FNonComponent
 function clickedOnNavigation(){
-    clickOccured = true;
+    clickOccurred = true;
 }
-splitDesc();
-//Main functions
+//FHideAll 
+// eslint-disable-next-line complexity
+function hideAll(active, source){    
+    clearTOandINT()
+    if(active === "aboutMeComplete") active = "aboutMe"
+    switch(active){
+        case "aboutMe":
+            for(let i = 0; i<newDescription.length; i++){
+                newDescription[i].classList.remove("visibleLetters")
+                newDescription[i].classList.add("invisibleLetter")
+            }
+            for(let i = 0; i<textToCover.length; i++){
+                textToCover[i].classList.remove('reveal-text-reverse')
+            }
+            myImage.classList.add("meBlur")
+            myImage.classList.remove("meNoBlur")
+            aboutMe.classList.remove("aboutMeOn")
+            aboutMe.classList.add("aboutMeOff")
+            linksAboutMe.classList.add("visibilityOff")
+            break
+        case "techStack":
+            hideTechPanels(event);
+            break
+        case "contact":
+            hideContactForm(event);
+            break;
+        case "projects":
+            if(source!=="projectsHover"){
+                mosaic.classList.add("visibilityOff")
+                if(clickOccurred){
+                    projectSubMenu.style.maxHeight="0px"
+                    rotatingArrow.style.transform = "rotate(0deg)"
+                }
+            }
+            for(let i = 0; i<panels.length; i++){
+                panels[i].classList.remove("restorePanels")
+                if(source!=="projects" && source!=="projectsHover"){  
+                    panels[i].classList.remove("hideThePanels")
+                    hiddenPanels[i].classList.add("invisibleLetter")
+                }
+             }
+             
+            break;
+        default:
+            return 0
+    }
+}
 
+function clearTOandINT(){
+    clearTimeout(hideTimeout)
+    clearInterval(letterInterval)
+    clearTimeout(textCoverTimeout)
+    clearInterval(textCoverInterval)
+    clearTimeout(contactFormTimeout)
+    clearTimeout(mosaicReturnTimeOut)
+    clearInterval(mosaicReturnInterval)
+    clearTimeout(projectsTimeout)
+}
+//End-NonComponent
+//FContact
 function revealContactForm(e){
-    if(clickOccured && e.type === "mouseover") return 0;
+    if(clickOccurred && e.type === "mouseover") return 0;
     hideAll(active)
     active="contact"
     contactForm.classList.remove("visibilityOff")
@@ -79,12 +151,9 @@ function revealContactForm(e){
 }
 // eslint-disable-next-line complexity
 function hideContactForm(event){
+    if(clickOccurred && event.type === "mouseleave") return 0;
+    if(event && event.pageX>119 && event.pageY<178) return 0;
     
-    if(clickOccured && event.type === "mouseleave") return 0;
-    if(event && event.pageX>110 && event.pageY<178) return 0;
-    
-    //contactForm.classList.add("slideInLeft")
-    // contactForm.classList.add("techStackOff")
     sendButton.classList.add("hideFormButton")
     for(let i = 0; i<formFields.length; i++){
         formFields[i].classList.add("hideForm")
@@ -101,11 +170,14 @@ function hideContactForm(event){
         contactForm.classList.add("visibilityOff")
     }   
 }
+//End-ConactForm
+//FAboutMe
 function revealAboutMe(hide, isOnLoad, event){
-    if(clickOccured && event.type === "mouseover") return 0;
+    if(clickOccurred && event.type === "mouseover") return 0;
     if(active === "aboutMeComplete" && event.type === "click") return 0;
     if(!isOnLoad) hideAll(active);
     clearTOandINT()
+    let interval = 600;
     active = "aboutMe"
     linksAboutMe.classList.remove("visibilityOff")
     myImage.classList.remove("meBlur")
@@ -114,35 +186,23 @@ function revealAboutMe(hide, isOnLoad, event){
     aboutMe.classList.remove("fadeToBottom")
     aboutMe.classList.add("aboutMeOn")
     magicLetters(hide)
-    textCoverTimeout = setTimeout(function(){
-        revealAboutMeMenu();
-        active="aboutMeComplete"
-    }, 600);
-    
-}
-
-function bringTechStack(event) {
-    if(clickOccured && event.type === "mouseover") return 0;
-    hideAll(active)
-    active = "techStack"
-    techStack.classList.remove("techStackOff")
-    techStack.classList.add("techStackOn")
-    for(let i = 0; i<theLogos.length; i++){
-        theLogos[i].classList.add("logo-animation")
-        logoDivs[i].classList.add("logo-slide")
+    if(!clickOccurred){
+        textCoverTimeout = setTimeout(function(){
+            revealAboutMeMenu();
+            active="aboutMeComplete"
+        }, interval);
     }
-}
-
-function hideTechStack(event){
-    if(clickOccured && event.type === "mouseleave") return 0;
-    clearTOandINT()
-    if(event.pageX>110) return 0;
-    hideTechPanels(event)
+    else{
+        for(let i = 0; i<textToCover.length; i++){
+            textToCover[i].style.color = "#000000"
+        }
+    }
+    // }
 }
 
 function hideAboutMe(hide, event){
     
-    if(clickOccured && event.type === "mouseleave") return 0;
+    if(clickOccurred && event.type === "mouseleave") return 0;
     if(event.pageX>110) return 0;
     else clearTOandINT()
     magicLetters(hide)
@@ -162,39 +222,92 @@ function hideAboutMe(hide, event){
     }, 1000)
   
 }
-
-//Helper functions
-//Helper functions for projects 
-function bringBackBG(e){
-
-    let count = document.getElementsByClassName("hideThePanels")
-    if(count.length<9) return 0;
-    let i = 0;
-    let intervalTiming = 1000*Math.random()
-    let idx=0;
-    mosaicReturnTimeOut = setTimeout(function(){
-        mosaicReturnInterval = setInterval(function(){
-            if(i<panels.length){
-                while(!panels[idx].classList.contains("hideThePanels")){
-                    idx = Math.floor(Math.random()*panels.length)
-                }
-            panels[idx].classList.remove('hideThePanels')
-            panels[idx].classList.add('restorePanels')
-            hiddenPanels[copyOfPanels.indexOf(panels[idx])].classList.add("invisibleLetter")
+function revealAboutMeMenu(){
+    let i = 0
+    textCoverInterval = setInterval(function(){
+        if(i<textToCover.length){
+            textToCover[i].classList.add('reveal-text-reverse')
             i++
-            intervalTiming = 500+600*Math.random()
-            }
-    }, intervalTiming)
-
-    }, 3000)
+        }
+    }, 500)
+}
+function magicLetters(hide){
+    let interval = 5;
+    if(clickOccurred) inteval = 0.1;
+    let randomBreakPoints = [0];
+    let i = 5
+    while(i>0){
+        let randBP = randomIntFromInterval(randomBreakPoints[randomBreakPoints.length-1]+i*10, randomBreakPoints[randomBreakPoints.length-1]+(622-randomBreakPoints[randomBreakPoints.length-1])/i)
+        randomBreakPoints.push(randBP)
+        i--;
+    }
+    let rBP = randomBreakPoints;
+    letterInterval = setInterval(function(){
+        if(i<=rBP[1])  letterReveal(newDescription[rBP[0]+i], hide);
+        if(rBP[1]+i<=rBP[2])  letterReveal(newDescription[rBP[1]+i], hide);
+        if(rBP[2]+i<=rBP[3])  letterReveal(newDescription[rBP[3]-i], hide);
+        if(rBP[3]+i<=rBP[4])  letterReveal(newDescription[rBP[3]+i], hide);
+        if(rBP[4]+i<=rBP[5])  letterReveal(newDescription[rBP[4]+i], hide);
+        if(rBP[5]+i<629)  letterReveal(newDescription[628-i], hide);
+        i++;
+    }, interval)   
+}
+function randomIntFromInterval(min, max) { 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+function letterReveal(letterIn, hide){
+    
+    let remove = "invisibleLetter"
+    let add = "visibleLetters"
+    if(hide){
+        remove = "visibleLetters"
+        add="invisibleLetter"
+    }
+    letterIn.classList.remove(remove)
+    letterIn.classList.add(add)
 }
 
+//End-AboutMe
+//FTechStack
+function bringTechStack(event) {
+    if(clickOccurred && event.type === "mouseover") return 0;
+    hideAll(active)
+    active = "techStack"
+    techStack.classList.remove("techStackOff")
+    techStack.classList.add("techStackOn")
+    for(let i = 0; i<theLogos.length; i++){
+        theLogos[i].classList.add("logo-animation")
+        logoDivs[i].classList.add("logo-slide")
+    }
+}
+
+function hideTechStack(event){
+    if(clickOccurred && event.type === "mouseleave") return 0;
+    clearTOandINT()
+    if(event.pageX>110) return 0;
+    hideTechPanels(event)
+}
+function hideTechPanels(event){
+    if(clickOccurred && event.type === "mouseleave") return 0;
+    for(let i = 0; i<theLogos.length; i++){
+        theLogos[i].classList.remove("logo-animation")
+        logoDivs[i].classList.remove("logo-slide")
+    }
+    techStack.classList.remove("techStackOn")
+    techStack.classList.add("techStackOff")
+}
+//End-TechStack
+//FProjects
 
 function revealProject(e){
-    if(clickOccured && e.type === "mouseover") return 0;
+    if(clickOccurred && e.type === "mouseover") return 0;
+    if(e.type==="click"){
+         projectSubMenu.style.maxHeight="70px"
+         rotatingArrow.style.transform = "rotate(90deg)"
+    }
     let delay = 0;
     if(active==="contact" || active==="techStack") delay = 520;
-    hideAll(active)
+    hideAll(active, "projects")
     projectsTimeout = setTimeout(function(){ 
         mosaic.classList.remove("visibilityOff")
         active="projects"
@@ -202,19 +315,28 @@ function revealProject(e){
 }, delay)
 }
 function primeThePanels(e){
-    if(e.target.id==="WCT" && backgroundVar ==="wct.jpg") return 0;
+    // if(e.target.id[0]WCT" && backgroundVar ==="wct.jpg") return 0;
     switch(e.target.id){
         case "AS":
+            WCTButton.style.fontWeight ="normal"
+            oldTownButton.style.fontWeight ="normal"
+            allSignButton.style.fontWeight = "bold"
             backgroundVar = "allsign.jpg";
             logoArray = allSignLogos;
             descArray=allSignDesc;
             break;
         case "OTN":
+            WCTButton.style.fontWeight ="normal"
+            oldTownButton.style.fontWeight ="bold"
+            allSignButton.style.fontWeight = "normal"
             backgroundVar = "oldtown.png";
             logoArray = oldTownLogos;
             descArray = oldTownDesc;
             break;
         case "WCT":
+            WCTButton.style.fontWeight ="bold"
+            oldTownButton.style.fontWeight ="normal"
+            allSignButton.style.fontWeight = "normal"
             backgroundVar = "wct.jpg";
             logoArray = WCTLogos;
             descArray = WCTDesc;
@@ -238,7 +360,7 @@ function panelHover(event, hide){
     let count = document.getElementsByClassName("hideThePanels")
 
     if(count.length===9) return 0;
-    hideAll(active, "projects")
+    hideAll(active, "projectsHover")
     
     behindMosaic.classList.remove("invisibleLetter")
     if(hide){
@@ -250,124 +372,35 @@ function panelHover(event, hide){
         hiddenPanels[copyOfPanels.indexOf(event.target)].classList.remove("invisibleLetter")
     }
 }
-    //Helper function hideAll
-// eslint-disable-next-line complexity
-function hideAll(active, source){
+
+function bringBackBG(e){
     
-    clearTOandINT()
-    if(active === "aboutMeComplete") active = "aboutMe"
-    switch(active){
-        case "aboutMe":
-            for(let i = 0; i<newDescription.length; i++){
-                newDescription[i].classList.remove("visibleLetters")
-                newDescription[i].classList.add("invisibleLetter")
-            }
-            for(let i = 0; i<textToCover.length; i++){
-                textToCover[i].classList.remove('reveal-text-reverse')
-            }
-            aboutMe.classList.remove("aboutMeOn")
-            aboutMe.classList.add("aboutMeOff")
-            linksAboutMe.classList.add("visibilityOff")
-            break
-        case "techStack":
-            hideTechPanels(event);
-            break
-        case "contact":
-            hideContactForm(event);
-            break;
-        case "projects":
-            if(source!=="projects"){
-                mosaic.classList.add("visibilityOff")
-            }
-            for(let i = 0; i<panels.length; i++){
-                panels[i].classList.remove("restorePanels")
-                if(source!=="projects"){
-                    panels[i].classList.remove("hideThePanels")
-                    hiddenPanels[i].classList.add("invisibleLetter")
+    let count = document.getElementsByClassName("hideThePanels")
+    if(count.length<9 && !e) return 0;
+    let i = 0;
+    let intervalTiming = 1000*Math.random()
+    let idx=0;
+    mosaicReturnTimeOut = setTimeout(function(){
+        mosaicReturnInterval = setInterval(function(){
+            if(i<panels.length){
+                while(!panels[idx].classList.contains("hideThePanels")){
+                    idx = Math.floor(Math.random()*panels.length)
                 }
-             }
-             
-            break;
-        default:
-            return 0
-    }
-}
-
-    //Helper functions revealAboutMe
-
-function clearTOandINT(){
-    clearTimeout(hideTimeout)
-    clearInterval(letterInterval)
-    clearTimeout(textCoverTimeout)
-    clearInterval(textCoverInterval)
-    clearTimeout(contactFormTimeout)
-    clearTimeout(mosaicReturnTimeOut)
-    clearInterval(mosaicReturnInterval)
-    clearTimeout(projectsTimeout)
-}
-function revealAboutMeMenu(){
-    
-    let i = 0
-    textCoverInterval = setInterval(function(){
-        if(i<textToCover.length){
-            textToCover[i].classList.add('reveal-text-reverse')
+            panels[idx].classList.remove('hideThePanels')
+            panels[idx].classList.add('restorePanels')
+            hiddenPanels[copyOfPanels.indexOf(panels[idx])].classList.add("invisibleLetter")
             i++
-        }
-    }, 500)
-}
-function magicLetters(hide){
-   
-    let randomBreakPoints = [0];
-    let i = 5
-    while(i>0){
-        let randBP = randomIntFromInterval(randomBreakPoints[randomBreakPoints.length-1]+i*10, randomBreakPoints[randomBreakPoints.length-1]+(622-randomBreakPoints[randomBreakPoints.length-1])/i)
-        randomBreakPoints.push(randBP)
-        i--;
-    }
-    let rBP = randomBreakPoints;
-    letterInterval = setInterval(function(){
-        if(i<=rBP[1])  letterReveal(newDescription[rBP[0]+i], hide);
-        if(rBP[1]+i<=rBP[2])  letterReveal(newDescription[rBP[1]+i], hide);
-        if(rBP[2]+i<=rBP[3])  letterReveal(newDescription[rBP[3]-i], hide);
-        if(rBP[3]+i<=rBP[4])  letterReveal(newDescription[rBP[3]+i], hide);
-        if(rBP[4]+i<=rBP[5])  letterReveal(newDescription[rBP[4]+i], hide);
-        if(rBP[5]+i<629)  letterReveal(newDescription[628-i], hide);
-        i++;
-    }, 5)   
-}
-function randomIntFromInterval(min, max) { 
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-function letterReveal(letterIn, hide){
-    
-    let remove = "invisibleLetter"
-    let add = "visibleLetters"
-    if(hide){
-        remove = "visibleLetters"
-        add="invisibleLetter"
-    }
-    letterIn.classList.remove(remove)
-    letterIn.classList.add(add)
-}
+            intervalTiming = 500+600*Math.random()
+            }
+    }, intervalTiming)
 
-    //Helper functions hide tech stack
-function hideTechPanels(event){
-    if(clickOccured && event.type === "mouseleave") return 0;
-    for(let i = 0; i<theLogos.length; i++){
-        theLogos[i].classList.remove("logo-animation")
-        logoDivs[i].classList.remove("logo-slide")
-    }
-    techStack.classList.remove("techStackOn")
-    techStack.classList.add("techStackOff")
+    }, 3000)
 }
+//End-Projects
 
-//runtime functions 
 
-function splitDesc(){
-    description = "<p><span class='singleLetter invisibleLetter'>"+desc.innerText.split("").join("</span><span class='singleLetter invisibleLetter'>").replace("\n", "</p><p>")+"</span></p>"
-    desc.innerHTML = description
-    newDescription = document.getElementsByClassName("singleLetter")
-}
+ 
+
 
 const oldTownLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/postgreslogo.png", "Assets/LOGOS/expresslogo.png", "Assets/LOGOS/oauth.png", "Assets/LOGOS/mocha.png", "Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
 const allSignLogos = ["Assets/LOGOS/tensorflow.png", "Assets/LOGOS/flask.png", "Assets/LOGOS/expresslogo.png", 
