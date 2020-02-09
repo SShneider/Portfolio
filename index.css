@@ -764,6 +764,7 @@ textarea{
     }
     #submenu{
         text-align: right;
+        max-width: 300px;
         width: 300px;
     }
     #submenu li{

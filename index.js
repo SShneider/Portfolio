@@ -61,6 +61,7 @@ function addAllEventListeners(){
     let arr = ["mouseover", "click"]
     if (/Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
         arr=["click"]
+        clickOccurred = true;
     }
     arr.forEach(function(evntType){
       
