@@ -6,14 +6,15 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
+    
     height: 100%;
     width: 100%;
     overflow: hidden;
   }
   #wrapperDiv{
-      position: relative;
+    display: flex;
+    flex-direction: row;
+    position: relative;
     overflow: hidden;
   }
 
@@ -240,9 +241,7 @@ button:hover{
     text-align: center;
 }
 #mosaic_wrapper {
-/*    
-    margin: auto;
-    margin-top: -10px; */
+
     position: absolute;
     z-index: 1;
     margin-top: -10px;
@@ -284,28 +283,7 @@ box-shadow: inset 6px 6px 13px 0px rgba(0,0,0,1);
     transform: translateX(0%);
     box-shadow: 2px 2px 0px 0px black;
 }
-    
-        /* 0%{
-            
-            border: 1px solid transparent;
-            box-shadow: 0 0 0 0 white;
-            transform: translateX(-30%)
-        }
-        /* 80%{
-            transform: translateX(0%)
-        }
-        90%{
-            transform: translateX(-2%)
-        } */
-        /* 99%{
-           
-            border: 1px solid transparent;
-            box-shadow: 0 0 0 0 white;    
-        }
-        100%{
 
-            transform: translateX(0%)
-        } */ 
     }
 
 .hideThePanels{
@@ -325,12 +303,9 @@ box-shadow: inset 6px 6px 13px 0px rgba(0,0,0,1);
     text-align: center;
     justify-content: center;
     border: 1px solid black;
-    
-    /* box-shadow: 2px 2px 2px 2px black; */
+
 }   
-/* #behind-mosaic .panel:hover{
-    border: 1px solid black;
-} */
+
 #mosaic_wrapper .panel {
     
     float: left;
@@ -338,14 +313,7 @@ box-shadow: inset 6px 6px 13px 0px rgba(0,0,0,1);
     height: 180px;
     margin: 5px;
     border: 1px solid black;
-   
     box-shadow: 2px 2px 0px 0px black;
-    /* filter: grayscale(100%); 
-    -webkit-filter: grayscale(100%); 
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%); 
-    -o-filter: grayscale(100%); */
-    
     background: url("Assets/wct.jpg") no-repeat 350px 110px fixed; /* 350 110 */
 }
 #mosaic_wrapper .panel::after{
@@ -353,14 +321,7 @@ box-shadow: inset 6px 6px 13px 0px rgba(0,0,0,1);
     width: 300px;
     height: 180px;
 }
-/* .sendButtonReveal{
-    opacity: 1;
-    -webkit-transition: opacity 700ms ease-in-out;
-    -moz-transition: opacity 700ms ease-in-out;
-    -o-transition: opacity 700ms ease-in-out;
-    transition: opacity 700ms ease-in-out;
-    
-} */
+
 .slideInLeft{
   
     opacity: 1;
@@ -704,8 +665,32 @@ textarea{
     #techStack{
         margin-top: 100px;
     }
+  
 }
-
+@media only screen and (max-width: 1024px){
+    #submenu{
+        max-width: 100px;
+    }
+    #mosaic_wrapper{
+        margin-left: 0px;
+        width: 840px;
+    }
+    #mosaic_wrapper .panel {
+        width: 265px;
+        height: 155px; 
+    }
+    #behind-mosaic .panelHidden{
+        width: 265px;
+        height: 155px; 
+    }
+    #behind-mosaic {
+        margin-left: 0px;
+        width: 840px;
+    }
+    #left{
+        max-width: 175px;
+    }
+}
 @media only screen and (max-width: 992px) {
     #desc{
         margin-left: 0px;
@@ -747,7 +732,7 @@ textarea{
    
 }
 @media only screen and (max-width: 600px) {
-    body{
+    #wrapperDiv{
         flex-direction: column;
 
     }

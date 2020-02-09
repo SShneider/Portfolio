@@ -110,16 +110,18 @@ function hideAll(active, source){
         case "projects":
             if(source!=="projectsHover"){
                 mosaic.classList.add("visibilityOff")
-                if(clickOccurred){
-                    projectSubMenu.style.maxHeight="0px"
-                    rotatingArrow.style.transform = "rotate(0deg)"
-                }
+              
+            }
+            if(clickOccurred && source!=="projects" && source!=="projectsHover"){
+                projectSubMenu.style.maxHeight="0px"
+                rotatingArrow.style.transform = "rotate(0deg)"
             }
             for(let i = 0; i<panels.length; i++){
                 panels[i].classList.remove("restorePanels")
-                if(source!=="projects" && source!=="projectsHover"){  
+                if(source!=="projectsHover"){  
                     panels[i].classList.remove("hideThePanels")
                     hiddenPanels[i].classList.add("invisibleLetter")
+                    
                 }
              }
              
@@ -156,7 +158,7 @@ function revealContactForm(e){
 // eslint-disable-next-line complexity
 function hideContactForm(event){
     if(clickOccurred && event.type === "mouseleave") return 0;
-    if(event && event.pageX>119 && event.pageY<178) return 0;
+    if(!clickOccurred && event && event.pageX>119 && event.pageY<178) return 0;
     
     sendButton.classList.add("hideFormButton")
     for(let i = 0; i<formFields.length; i++){
@@ -165,7 +167,7 @@ function hideContactForm(event){
         else formFields[i].classList.remove("slideInRight")
     }
     
-    if(event && event.pageY>178 || event && event.pageX<40){
+    if(!clickOccurred && event && event.pageY>178 || !clickOccurred && event && event.pageX<40){
     contactFormTimeout = setTimeout(function(){
         contactForm.classList.add("visibilityOff")
     }, 500)
@@ -207,7 +209,7 @@ function revealAboutMe(hide, isOnLoad, event){
 function hideAboutMe(hide, event){
     
     if(clickOccurred && event.type === "mouseleave") return 0;
-    if(event.pageX>110) return 0;
+    if(!clickOccurred && event.pageX>110) return 0;
     else clearTOandINT()
     magicLetters(hide)
     myImage.classList.remove("meNoBlur")
@@ -288,7 +290,7 @@ function bringTechStack(event) {
 function hideTechStack(event){
     if(clickOccurred && event.type === "mouseleave") return 0;
     clearTOandINT()
-    if(event.pageX>110) return 0;
+    if(!clickOccurred && event.pageX>110) return 0;
     hideTechPanels(event)
 }
 function hideTechPanels(event){
@@ -311,6 +313,7 @@ function revealProject(e){
     }
     let delay = 0;
     if(active==="contact" || active==="techStack") delay = 520;
+   
     hideAll(active, "projects")
     projectsTimeout = setTimeout(function(){ 
         mosaic.classList.remove("visibilityOff")
