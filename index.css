@@ -689,7 +689,7 @@ textarea{
 }
 @media only screen and (max-width: 1200px) {
     #desc{
-        max-width: 600px;
+        max-width: 700px;
     }
     #links ul{
         max-width: 600px;
@@ -707,7 +707,7 @@ textarea{
         flex-direction: column;
         align-items: center;
         margin-left:0px;
-        max-width: 550px;
+        max-width: 600px;
     }
     #links ul{
         max-width: 500px;
@@ -727,4 +727,51 @@ textarea{
     body{
         flex-direction: column;
     }
+    .header{
+        flex-direction: column;
+        text-align: left;
+        height: 50px;
+        margin-bottom: 5px;
+        text-decoration: underline;
+    }
+    /* .header p{
+        max-width: 245px;
+        border-bottom: 1px solid black;
+    } */
+    #logo{
+        width: 400px;
+        margin-left: 10px;
+    }
+    #menu{
+        text-align: left;
+        width: 600px;
+        padding-left: 0px;
+        padding-bottom: 7px;
+        padding-top: 5px;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+    }
+    #menu li{
+        display: inline;
+        margin-left: 15px;
+       
+    }
+    #submenu{
+        text-align: right;
+        width: 400px;
+    }
+    #submenu li{
+        display: inline;
+        
+    }
+    #desc{
+        padding-left: 15px;
+    }
+    #me{
+        margin-left: 0px;
+    }
+    #aboutMe{
+        margin-top: 70px;
+    }
+    
 }
