@@ -58,7 +58,11 @@ function splitDesc(){
 mosaic.addEventListener("mouseleave", ()=>bringBackBG())
 theWholeMenu.addEventListener("click", ()=> clickedOnNavigation())
 function addAllEventListeners(){
-  ["mouseover", "click"].forEach(function(evntType){
+    let arr = ["mouseover", "click"]
+    if (/Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        arr=["click"]
+    }
+    arr.forEach(function(evntType){
       
     toolboxButton.addEventListener(evntType, ()=>bringTechStack(event))
     aboutMeButton.addEventListener(evntType, ()=>revealAboutMe(0, 0, event))
