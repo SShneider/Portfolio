@@ -203,6 +203,7 @@ a{
     flex-direction: column;
     max-width: 1200px;
     text-align: center;
+    padding-right: 25px;
 }
 button{
     width: 90px;
@@ -694,6 +695,9 @@ textarea{
     #links ul{
         max-width: 600px;
     }
+    #techStack{
+        margin-top: 100px;
+    }
 }
 
 @media only screen and (max-width: 992px) {
@@ -712,7 +716,18 @@ textarea{
     #links ul{
         max-width: 500px;
     }
+    #techStack{
+        margin-left: -50px;
+    }
   
+}
+@media only screen and (max-width: 842px) {
+    body{
+        overflow: visible;
+    }
+    #techStack{
+        margin-top: 425px;
+    }
 }
 @media only screen and (max-width: 768px) {
    #left{
@@ -773,5 +788,7 @@ textarea{
     #aboutMe{
         margin-top: 70px;
     }
-    
+    #links ul{
+        max-width: 400px;
+    }
 }
