@@ -9,8 +9,8 @@ body {
     display: flex;
     flex-direction: row;
     height: 100%;
-    overflow: hidden;
-
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
   input{
 
@@ -22,6 +22,7 @@ textarea{
     font-family: "Montserrat";
     font-size: 15px;
 }
+
 .header{
     line-height: 1;
    
@@ -722,9 +723,10 @@ textarea{
   
 }
 @media only screen and (max-width: 842px) {
-    body{
-        overflow: visible;
-    }
+    /* #right{
+        margin-top: 50px;
+        overflow-y: visible;
+    } */
     #techStack{
         margin-top: 425px;
     }
@@ -790,5 +792,8 @@ textarea{
     }
     #links ul{
         max-width: 400px;
+    }
+    #techStack{
+        margin-top: 500px;
     }
 }
