@@ -9,7 +9,8 @@ body {
     display: flex;
     flex-direction: row;
     height: 100%;
-    overflow: hidden!important;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   input{
 
@@ -739,7 +740,7 @@ textarea{
 @media only screen and (min-width: 600px) {
    
 }
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     body{
         flex-direction: column;
         overflow: hidden!important;
