@@ -373,7 +373,8 @@ function primeThePanels(e){
     }
 }
 function panelHover(event, hide){
-    if(window.innerWidth<=700 || window.innerHeight<429) return 0;
+    //|| window.innerHeight<429
+    if(window.innerWidth<=700 ) return 0;
     let count = document.getElementsByClassName("hideThePanels")
 
     if(count.length===9) return 0;
