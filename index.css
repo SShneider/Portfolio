@@ -836,7 +836,7 @@ textarea{
     }
 
     #mosaic_wrapper .panel{
-        background: url("Assets/wct.jpg") 140px 170px/600px no-repeat fixed;
+        background: url("Assets/wct.jpg") center 170px/600px no-repeat fixed;
     }
    
    
@@ -858,7 +858,7 @@ textarea{
     }
     #mosaic_wrapper .panel{
 
-        background: url("Assets/wct.jpg") center 145px/375px no-repeat fixed;
+        background: url("Assets/wct.jpg") 100% 145px/375px no-repeat fixed;
         border: none;
         width: 33.3%;
         height: 80px;
