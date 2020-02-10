@@ -742,9 +742,7 @@ textarea{
     #techStack{
         margin-top: 150px;
     }
-    #mosaic_wrapper{
-        position: static;
-    }
+ 
     #mosaic_wrapper,  #behind-mosaic{
         width: 600px;
     }
