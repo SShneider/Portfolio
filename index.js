@@ -46,10 +46,9 @@ let backgroundVar;
 let logoArray;
 let descArray;
 let clickOccurred = false;
-toolboxButton.innerHTML = window.innerWidth
 const resDict = {10: "370px 110px/1000px", 
 9: "300px 100px/825px", 8:"260px 130px/600px", 7: "150px 170px/600px",
-6: "100% 145px/375px"}
+6: "100% 145px/10px"}
 //FRuntimeFunc
 splitDesc();
 addAllEventListeners();
@@ -366,7 +365,7 @@ function primeThePanels(e){
         if(e.target.id!=="menutitle"){
             projectLogos[i].src=logoArray[i];
             projectDesc[i].innerHTML=descArray[i];
-            panels[i].style.background=`url("Assets/${backgroundVar}") ${resDict[key]} no-repeat fixed`
+            panels[i].style.background=`url("Assets/${backgroundVar}") ${resDict[key]} fixed`
         }
         panels[i].addEventListener("mouseover", function(){
             panelHover(event, 0)});
