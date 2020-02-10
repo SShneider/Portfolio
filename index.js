@@ -47,7 +47,7 @@ let logoArray;
 let descArray;
 let clickOccurred = false;
 const resDict = {10: "370px 110px/1000px", 
-9: "300px 100px/825px", 8:"260px 130px/600px", 7: "0px 0px/600px",
+9: "300px 100px/825px", 8:"260px 130px/600px", 7: "150px 170px/600px",
 6: "100% 145px/375px"}
 //FRuntimeFunc
 splitDesc();
