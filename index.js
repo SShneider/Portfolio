@@ -365,7 +365,7 @@ function primeThePanels(e){
         if(e.target.id!=="menutitle"){
             projectLogos[i].src=logoArray[i];
             projectDesc[i].innerHTML=descArray[i];
-            panels[i].style.background=`url("Assets/${backgroundVar}") ${resDict[key]} repeat fixed`
+            panels[i].style.background=`url("Assets/${backgroundVar}") ${resDict[key]} no-repeat fixed`
         }
         panels[i].addEventListener("mouseover", function(){
             panelHover(event, 0)});

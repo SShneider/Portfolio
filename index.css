@@ -742,6 +742,9 @@ textarea{
     #techStack{
         margin-top: 150px;
     }
+    #mosaic_wrapper{
+        position: static;
+    }
     #mosaic_wrapper,  #behind-mosaic{
         width: 600px;
     }
@@ -749,7 +752,6 @@ textarea{
         width: 195px;
         height: 124px;
     }
-
 }
 @media only screen and (max-width: 768px) {
     .logo{
