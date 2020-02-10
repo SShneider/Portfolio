@@ -48,7 +48,7 @@ let descArray;
 let clickOccurred = false;
 const resDict = {10: "370px 110px/1000px", 
 9: "300px 100px/825px", 8:"260px 130px/600px", 7: "150px 170px/600px",
-6: "center 145px/375px"}
+6: "100% 145px/375px"}
 //FRuntimeFunc
 splitDesc();
 addAllEventListeners();
@@ -66,6 +66,7 @@ function addAllEventListeners(){
         arr=["click"]
         clickOccurred = true;
     }
+    if(window.innerWidth<769) clickOccurred= true;
     arr.forEach(function(evntType){
     toolboxButton.addEventListener(evntType, ()=>bringTechStack(event))
     aboutMeButton.addEventListener(evntType, ()=>revealAboutMe(0, 0, event))
@@ -162,8 +163,8 @@ function revealContactForm(e){
 function hideContactForm(event){
 
     if(clickOccurred && event.type === "mouseleave") return 0;
-    if(clickOccurred && event && event.pageX>119 && event.pageY<178) return 0;
-    else if(window.innerWidth<769 && event.pageY>92 || window.innerWidth<769 && event.pageY<72) return 0
+    if(!clickOccurred && event && event.pageX>119 && event.pageY<178) return 0;
+    // else if(window.innerWidth<769 && event.pageY>92 || window.innerWidth<769 && event.pageY<72) return 0
     sendButton.classList.add("hideFormButton")
     for(let i = 0; i<formFields.length; i++){
         formFields[i].classList.add("hideForm")

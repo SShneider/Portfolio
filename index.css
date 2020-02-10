@@ -854,9 +854,10 @@ textarea{
 
     }
     #mosaic_wrapper .panel{
-        background: url("Assets/wct.jpg") no-repeat center 150px/375px fixed;
+
+        background: url("Assets/wct.jpg") no-repeat 100% 145px/375px fixed;
         border: none;
-        width: 32%;
+        width: 33.3%;
         height: 80px;
     }
 }
