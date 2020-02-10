@@ -834,7 +834,7 @@ textarea{
     }
 
     #mosaic_wrapper .panel{
-        background: url("Assets/wct.jpg") center center/600px no-repeat fixed;
+        background: url("Assets/wct.jpg") 0px 0px/600px no-repeat fixed;
     }
    
    
