@@ -681,7 +681,14 @@ textarea{
         animation-name: none;
     }
 }
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1024px),
+only screen and (-webkit-min-device-pixel-ratio: 1),
+only screen and ( min--moz-device-pixel-ratio: 1),
+only screen and ( -o-min-device-pixel-ratio: 1/1),
+only screen and ( min-device-pixel-ratio: 1),
+only screen and ( min-resolution: 100dpi),
+only screen and ( min-resolution: 1dppx)
+{
  
     #mosaic_wrapper, #behind-mosaic {
         width: 840px;
