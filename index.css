@@ -858,10 +858,21 @@ textarea{
         height: 80px;
     }
 }
-@media only screen and (max-height: 400px) {
+@media only screen and (max-height: 429px) {
     #mosaic_wrapper{
+        margin-top: -100px;
         width: 100%;
         position: static;
+    }
+    #behind-mosaic{
+        width: 0px;
+        height: 0px;
+        overflow: hidden;
+    }
+    #mosaic_wrapper .panel{
+        border: none;
+        background: url("Assets/wct.jpg") center 105px/375px no-repeat fixed;
+
     }
     #wrapperDiv{
         overflow-y: scroll;

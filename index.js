@@ -359,8 +359,8 @@ function primeThePanels(e){
     }
     let key = Math.floor(window.innerWidth/100);
     if(key>10) key = 10;
-    else if(key<6) key = 6;
     else if(key===7 && window.innerWidth>768) key = 8;
+    else key = 6;
     for(let i=0; i<panels.length; i++){
         if(e.target.id!=="menutitle"){
             projectLogos[i].src=logoArray[i];
@@ -373,7 +373,7 @@ function primeThePanels(e){
     }
 }
 function panelHover(event, hide){
-    if(window.innerWidth<=700) return 0;
+    if(window.innerWidth<=700 || window.innerHeight<429) return 0;
     let count = document.getElementsByClassName("hideThePanels")
 
     if(count.length===9) return 0;
