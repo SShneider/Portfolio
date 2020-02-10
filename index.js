@@ -46,7 +46,7 @@ let backgroundVar;
 let logoArray;
 let descArray;
 let clickOccurred = false;
-toolboxButton.innerText(window.innerWidth)
+toolboxButton.innerHTML = window.innerWidth
 const resDict = {10: "370px 110px/1000px", 
 9: "300px 100px/825px", 8:"260px 130px/600px", 7: "150px 170px/600px",
 6: "100% 145px/375px"}
