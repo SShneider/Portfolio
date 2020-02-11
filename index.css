@@ -20,7 +20,7 @@ body {
     justify-content: left;
 }
 #logo{
-    font-family: 'Arvo', serif;
+    font-family: 'Arvo', 'Georgia', serif;
     font-weight: 200;
     font-size: 25px;
     width: 200px;
@@ -60,7 +60,7 @@ in many other elements too*/
     position: fixed;
     width: 80px;
     list-style: none;
-    font-family: 'Baskervville', serif;
+    font-family: 'Baskervville', 'Baskerville', 'Trebuchet MS', serif;
     color: gray
 }
 #menu>li:hover{
@@ -119,7 +119,7 @@ in many other elements too*/
 }
 
 ul#submenu>li{
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
     font-size: 13px;
     text-indent: -30px;
     width: 80px;
@@ -160,7 +160,7 @@ ul#submenu>li:before{
     margin-top: -5px;
     font-size: 15px;
     color: rgb(139, 139, 139);
-    font-family: "Inconsolata", monospace;
+    font-family: "Inconsolata", 'Lucida Sans Typewriter', monospace;
 }
 /*About me - Description Ends*/
 /*About me - Myface*/
@@ -190,7 +190,7 @@ ul#submenu>li:before{
     max-width: 100vh;
     margin-left: 130px;
     margin-top: 35px;
-    font-family: 'ZCOOL QingKe HuangYou', serif;
+    font-family: 'ZCOOL QingKe HuangYou', 'Courier New',  serif;
     font-size: 19px;
    
 }
@@ -442,7 +442,7 @@ button:hover{
 }
 
 input{
-    font-family: "Source Code Pro", monospace;
+    font-family: "Source Code Pro", 'Courier New', monospace;
     font-size: 14px;
     margin-top: 2px;
     width: 100%;
@@ -453,7 +453,7 @@ input{
     resize: vertical;
 }
 textarea{
-    font-family: "Montserrat", monospace;
+    font-family: "Montserrat",'Courier New',  monospace;
     font-size: 15px;
     margin-top: 2px;
     width: 100%;
@@ -603,7 +603,7 @@ textarea{
     z-index: 0;
     margin-top: -10px;
     margin-left:120px;
-    font-family: "ZCOOL QingKe HuangYou", monospace;
+    font-family: "ZCOOL QingKe HuangYou", 'Candara', monospace;
     font-size: 15px;
     width: 990px;
 }
