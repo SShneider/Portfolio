@@ -28,7 +28,6 @@ body {
 }
 
 .visibilityOff{
-
     max-height: 0;
     max-width: 0;
     overflow: hidden;
@@ -61,7 +60,7 @@ in many other elements too*/
     position: fixed;
     width: 80px;
     list-style: none;
-    font-family: 'Baskervville', cursive;
+    font-family: 'Baskervville', serif;
     color: gray
 }
 #menu>li:hover{
@@ -120,7 +119,7 @@ in many other elements too*/
 }
 
 ul#submenu>li{
-    font-family: 'Rajdhani';
+    font-family: 'Rajdhani', sans-serif;
     font-size: 13px;
     text-indent: -30px;
     width: 80px;
@@ -161,7 +160,7 @@ ul#submenu>li:before{
     margin-top: -5px;
     font-size: 15px;
     color: rgb(139, 139, 139);
-    font-family: "Inconsolata"
+    font-family: "Inconsolata", monospace;
 }
 /*About me - Description Ends*/
 /*About me - Myface*/
@@ -191,7 +190,7 @@ ul#submenu>li:before{
     max-width: 100vh;
     margin-left: 130px;
     margin-top: 35px;
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-family: 'ZCOOL QingKe HuangYou', serif;
     font-size: 19px;
    
 }
@@ -373,7 +372,7 @@ a{
     
 }
 .tooltip{
-    font-family: 'Space Mono';
+    font-family: 'Space Mono', monospace;
     font-size: 1px;
     opacity: 0;
     top: 75%;
@@ -443,7 +442,7 @@ button:hover{
 }
 
 input{
-    font-family: "Source Code Pro";
+    font-family: "Source Code Pro", monospace;
     font-size: 14px;
     margin-top: 2px;
     width: 100%;
@@ -454,7 +453,7 @@ input{
     resize: vertical;
 }
 textarea{
-    font-family: "Montserrat";
+    font-family: "Montserrat", monospace;
     font-size: 15px;
     margin-top: 2px;
     width: 100%;
@@ -604,7 +603,7 @@ textarea{
     z-index: 0;
     margin-top: -10px;
     margin-left:120px;
-    font-family: "ZCOOL QingKe HuangYou";
+    font-family: "ZCOOL QingKe HuangYou", monospace;
     font-size: 15px;
     width: 990px;
 }
