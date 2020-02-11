@@ -194,7 +194,6 @@ function revealAboutMe(hide, isOnLoad, event){
     myImage.classList.remove("meBlur")
     myImage.classList.add("meNoBlur")
     aboutMe.classList.remove("aboutMeOff")
-    aboutMe.classList.remove("fadeToBottom")
     aboutMe.classList.add("aboutMeOn")
     magicLetters(hide)
     if(!clickOccurred || isOnLoad){
