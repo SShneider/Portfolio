@@ -199,7 +199,7 @@ ul#submenu>li:before{
     line-height: 1.4;
     color: white;
 }
-a{
+#links a{
     text-decoration: none;
     color: white;
 }
@@ -537,8 +537,8 @@ textarea{
 #mosaic_wrapper {
     position: absolute;
     z-index: 1;
-    margin-top: -10px;
-    margin-left: 120px;
+    margin-top: -30px;
+    margin-left: 100px;
     width: 940px; /* (panel_height+panel_margin*2)*panels per row = (100px+(10px*2))*8 */
     }
 #mosaic_wrapper .panel {
@@ -549,7 +549,7 @@ textarea{
     margin: 5px;
     border: 1px solid black;
     box-shadow: 2px 2px 0px 0px black;
-    background: url("Assets/wct.jpg") 370px 110px/1000px no-repeat fixed; /* 350 110 */
+    background: url("Assets/wct.jpg") 370px 100px/1000px no-repeat fixed; /* 350 110 */
 }
 .hideThePanels{
     overflow: hidden;
@@ -601,8 +601,8 @@ textarea{
 #behind-mosaic{
     position: absolute;
     z-index: 0;
-    margin-top: -10px;
-    margin-left:120px;
+    margin-top: -30px;
+    margin-left:100px;
     font-family: "ZCOOL QingKe HuangYou", 'Candara', monospace;
     font-size: 15px;
     width: 990px;
@@ -625,6 +625,40 @@ textarea{
 
 }   
 /*Projects - Hidden Panels End*/
+/*Projects - Buttons*/
+#projectButtons{
+
+   position: absolute;
+}
+/* .fa-github{
+    font-size: 22px;
+}
+.fa-external-link-alt{
+    font-size: 19px;
+} */
+.btnProject{
+    width: 100px;
+    font-family: 'Montserrat', 'Courier New',  serif;
+    font-size: 15px;
+    padding: 10px 10px 12px 10px;
+    margin: auto;
+    background-color: white;
+    border: 0.5px solid black;
+    border-radius: 1px;
+    box-shadow: 1px 1px 0px 0px gray;
+    color: black
+}
+.btnProject a{
+    text-decoration: none;
+}
+.btnProject a:hover{
+    background-color: black;
+    color: white;
+    border-color: black;
+    font-weight: bold;
+}
+
+
 /* Projects End*/
 /* RIGHT SIDE ENDS*/
 /* MEDIA QUERIES START*/
@@ -701,7 +735,9 @@ textarea{
         margin-left:0px;
         max-width: 100vh;
     }
-   
+    .btnProject{
+        width: 70px;
+    }
     #techStack{
         margin-left: -50px;
     }
@@ -726,6 +762,9 @@ textarea{
     .logo{
         width: 50px;
         
+    }
+    .btnProject{
+        width: 50px;
     }
     .techCategory{
         width: 250px;

@@ -29,6 +29,10 @@ const behindMosaic = document.getElementById("behind-mosaic")
 const projectLogos = document.querySelectorAll(".panelHidden img")
 const projectDesc = document.querySelectorAll(".panelHidden ul")
 const projectSubMenu = document.getElementById("submenu")
+const gitHubLink = document.getElementById("github")
+const demoLink = document.getElementById("demo")
+const demoForm = document.getElementsByTagName("form")[1]
+console.log(demoForm)
 //VGlobalVars
 let copyOfPanels = [].slice.call(panels)
 let textCoverInterval;
@@ -46,9 +50,10 @@ let backgroundVar;
 let logoArray;
 let descArray;
 let clickOccurred = false;
-const resDict = {10: "370px 110px/1000px", 
+const resDict = {10: "370px 100px/1000px", 
 9: "300px 100px/825px", 8:"260px 130px/600px", 7: "100% 170px/600px",
 6: "center 145px/375px"}
+//variable arrays at the bottom of the file
 //FRuntimeFunc
 splitDesc();
 addAllEventListeners();
@@ -335,6 +340,9 @@ function primeThePanels(e){
             backgroundVar = "allsign.jpg";
             logoArray = allSignLogos;
             descArray=allSignDesc;
+            demoForm.classList.remove("visibilityOff")
+            demoLink.formAction=demoArray[1]
+            gitHubLink.formAction=gitArray[2]
             break;
         case "OTN":
             WCTButton.style.fontWeight ="normal"
@@ -343,6 +351,9 @@ function primeThePanels(e){
             backgroundVar = "oldtown.png";
             logoArray = oldTownLogos;
             descArray = oldTownDesc;
+            demoForm.classList.remove("visibilityOff")
+            demoLink.formAction=demoArray[0]
+            gitHubLink.formAction=gitArray[1]
             break;
         case "WCT":
             WCTButton.style.fontWeight ="bold"
@@ -351,6 +362,9 @@ function primeThePanels(e){
             backgroundVar = "wct.jpg";
             logoArray = WCTLogos;
             descArray = WCTDesc;
+            demoForm.classList.add("visibilityOff")
+            demoLink.formAction=""
+            gitHubLink.formAction=gitArray[0]
             break;
         default:
             break;
@@ -415,10 +429,8 @@ function bringBackBG(e){
 }
 //End-Projects
 
-
- 
-
-
+const gitArray = ["https://github.com/SShneider/wctwexpress", "https://github.com/OldTownNode/GraceShopper", "https://github.com/D3Doritos"]
+const demoArray = ["https://old-town-node.herokuapp.com", "https://allsign.herokuapp.com"]
 const oldTownLogos = ["Assets/LOGOS/jslogo.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/postgreslogo.png", "Assets/LOGOS/expresslogo.png", "Assets/LOGOS/oauth.png", "Assets/LOGOS/mocha.png", "Assets/LOGOS/webpack.png", "Assets/LOGOS/heroku.png"]
 const allSignLogos = ["Assets/LOGOS/tensorflow.png", "Assets/LOGOS/flask.png", "Assets/LOGOS/expresslogo.png", 
 "Assets/LOGOS/reduxlogo2.png", "Assets/LOGOS/semantic.png", "Assets/LOGOS/reactlogo2.png", "Assets/LOGOS/postgreslogo.png", 
