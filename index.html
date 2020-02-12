@@ -60,10 +60,12 @@
                 <a href="https://github.com/SShneider"><li class="textCover">GITHUB</li></a>
             </ul></div>
         <div id="contactForm" class="visibilityOff">
-              <form name='contact' method='POST'>
+              <form name='contact' method='POST' data-netlify="true">
+                <div class="visibilityOff">
+                    <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                </div>
                 <div class="formFields ">
                   <input type="text" placeholder="Name" name="name" required="required" /><span class="highlight"></span><span class="bar"></span>
-                  
                 </div>
                 <div class="formFields ">
                   <input  type="text" placeholder="Email" name="email" required="required" /><span class="highlight"></span><span class="bar"></span>
