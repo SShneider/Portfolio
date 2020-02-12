@@ -432,8 +432,8 @@ button:hover{
     color: white;
     border-color: black;
     font-weight: bold;
-
 }
+
 .hideForm{
     animation: hideForm 0.4s both;
 }
@@ -606,11 +606,15 @@ textarea{
     font-family: "ZCOOL QingKe HuangYou", 'Candara', monospace;
     font-size: 15px;
     width: 990px;
+    z-index: -1;
 }
 #behind-mosaic ul{
     padding-left: 0px;
     list-style: none;
     text-align: center;
+}
+#sendButton{
+    z-index: 1;
 }
 #behind-mosaic .panelHidden{
     display: flex;
@@ -622,7 +626,6 @@ textarea{
     text-align: center;
     justify-content: center;
     border: 1px solid black;
-
 }   
 /*Projects - Hidden Panels End*/
 /*Projects - Buttons*/
@@ -630,12 +633,7 @@ textarea{
 
    position: absolute;
 }
-/* .fa-github{
-    font-size: 22px;
-}
-.fa-external-link-alt{
-    font-size: 19px;
-} */
+
 .btnProject{
     width: 100px;
     font-family: 'Montserrat', 'Courier New',  serif;
@@ -893,29 +891,10 @@ textarea{
     }
 }
 @media only screen and (max-height: 429px) {
-    /* #mosaic_wrapper{
-        margin-top: -100px;
-        width: 100%;
-        position: static;
-    }
-    #behind-mosaic{
-        width: 0px;
-        height: 0px;
-        overflow: hidden;
-    }
-    #mosaic_wrapper .panel{
-        border: none;
-        background: url("Assets/wct.jpg") center 105px/375px no-repeat fixed;
-
-    } */
     #wrapperDiv{
         overflow-y: scroll;
     }
 }
-/* @media screen and (max-width: 375px) {
-    body {
-        overflow: hidden;
-    }
-} */
+
 
 /* MEDIA QUERIES END*/
