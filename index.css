@@ -535,6 +535,7 @@ textarea{
 /* Projects */
 /*Projects - Front Image*/
 #mosaic_wrapper {
+    
     position: absolute;
     z-index: 1;
     margin-top: -30px;
@@ -630,8 +631,7 @@ textarea{
 /*Projects - Hidden Panels End*/
 /*Projects - Buttons*/
 #projectButtons{
-
-   position: absolute;
+    position: absolute;
 }
 
 .btnProject{
@@ -644,7 +644,8 @@ textarea{
     border: 0.5px solid black;
     border-radius: 1px;
     box-shadow: 1px 1px 0px 0px gray;
-    color: black
+    color: black;
+    
 }
 .btnProject a{
     text-decoration: none;
@@ -698,7 +699,7 @@ textarea{
         margin-top: 100px;
     }
     #submenu{
-        max-width: 100px;
+        max-width: 80px;
     }
     .reveal-text-reverse{
         animation-name: none;
@@ -837,6 +838,7 @@ textarea{
         text-align: right;
         max-width: 300px;
         width: 300px;
+        
     }
     #submenu li{
         display: inline;
@@ -881,6 +883,7 @@ textarea{
     #mosaic_wrapper{
         width: 100%;
         position: static;
+        overflow: hidden;
     }
     #mosaic_wrapper .panel{
 

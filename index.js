@@ -32,7 +32,7 @@ const projectSubMenu = document.getElementById("submenu")
 const gitHubLink = document.getElementById("github")
 const demoLink = document.getElementById("demo")
 const demoForm = document.getElementsByTagName("form")[1]
-console.log(demoForm)
+const gitdemoDiv = document.getElementById("projectButtons")
 //VGlobalVars
 let copyOfPanels = [].slice.call(panels)
 let textCoverInterval;
@@ -119,7 +119,7 @@ function hideAll(active, source){
         case "projects":
             if(source!=="projectsHover"){
                 mosaic.classList.add("visibilityOff")
-              
+                gitdemoDiv.classList.add("visibilityOff")
             }
             if(clickOccurred && source!=="projects" && source!=="projectsHover"){
                 projectSubMenu.style.maxHeight="0px"
@@ -331,6 +331,7 @@ function revealProject(e){
 }, delay)
 }
 function primeThePanels(e){
+    gitdemoDiv.classList.remove("visibilityOff")
     // if(e.target.id[0]WCT" && backgroundVar ==="wct.jpg") return 0;
     switch(e.target.id){
         case "AS":
